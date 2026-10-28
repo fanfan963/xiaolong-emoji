@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>龙华工会“小龙”系列表情包</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #fff;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    padding: 48px 32px 64px;
+  }
+  h1 {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .cell img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #f6f6f6;
+    border-radius: 12px;
+    transition: transform .18s ease, background .18s ease;
+  }
+  .cell img:hover {
+    transform: scale(1.06);
+    background: #efefef;
+  }
+  .cell span {
+    color: #9a9a9a;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: color .18s ease;
+  }
+  .cell:hover span { color: #333; }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { body { padding: 32px 16px 48px; } .grid { gap: 16px; } }
+</style>
+</head>
+<body>
+
+  <h1>龙华工会“小龙”系列表情包</h1>
+
+  <!--
+    替换表情的方法：
+    1. 把根目录的 01.gif ~ 16.gif 用同名新文件覆盖即可，位置不变。
+    2. 想改名字，改下面 TITLES 里对应的文字。
+  -->
+  <div class="grid" id="grid"></div>
+
+<script>
+  const TITLES = [
+    '震惊', '节日快乐', '报名', '下班',
+    '摸鱼', '收到', '冲', '哈哈哈哈',
+    '无语', '就这', '唱歌', '哼',
+    '耶', '偷笑', '上班', '玫瑰'
+  ];
+
+  const grid = document.getElementById('grid');
+  TITLES.forEach((name, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    const img = document.createElement('img');
+    img.src = n + '.gif';
+    img.alt = name;
+    img.loading = 'lazy';
+    const label = document.createElement('span');
+    label.textContent = name;
+    cell.append(img, label);
+    grid.appendChild(cell);
+  });
+</script>
+</body>
+</html>
