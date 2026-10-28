@@ -8,7 +8,8 @@
 <!--
   替换表情的方法
   1. 把新的 gif 按同名覆盖仓库里的 01.gif ~ 16.gif。
-  2. 把下面 script 里的 CDN_VERSION 数字改大一位，否则加速 CDN 还会给旧缓存的图。
+  2. 换图后把 script 里 CDN 地址末尾那串 @ 后面的 commit 号更新成最新的，
+     否则加速 CDN 会一直给你旧缓存的图（GitHub 仓库页右侧可复制最新 commit 号）。
   3. Commit 后约 1 分钟生效。
 -->
 <style>
@@ -177,8 +178,7 @@
   </div>
 
 <script>
-  var CDN_VERSION = 'v=2';
-  var CDN = 'https://gcore.jsdelivr.net/gh/fanfan963/xiaolong-emoji@main/';
+  var CDN = 'https://gcore.jsdelivr.net/gh/fanfan963/xiaolong-emoji@cd8b00f8d8729a7664ae203d6a6a9085ddb15019/';
 
   var imgs = Array.prototype.slice.call(document.querySelectorAll('.frame img'));
   var loaded = 0, total = imgs.length;
@@ -215,7 +215,7 @@
         tick();
       }
     };
-    node.src = CDN + primary + '?' + CDN_VERSION;
+    node.src = CDN + primary;
   }
 
   if ('IntersectionObserver' in window) {
